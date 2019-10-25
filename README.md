@@ -14,10 +14,9 @@ returned by the call to the external OAuth1.0 API. XML, JSON, HTML, cat gifs, it
 The 3 files that count for reals are:
 * routes.rb
 * jira_controller.rb (you will need to edit this to replace my key file names and paths with yours)
-* OAF2.rb (found in the root of this application is a utility program)
+* OAF2.rb (depricated - See https://github.com/brucephenry/oaf instead)
 
 # To Do
-* Break OAF out into its own repo.
 * Write some damned tests!
 * Move the key files filenames & path to a configuration file (e.g. application.rb).
 * Add rescue clauses to the key file reads to force server aborts if the keys cannot be read.
@@ -42,7 +41,7 @@ Rails 6.0.0 or later
 
 * Configuration
 Needs acces to the folder in which your relevant key files for OAuth are located.
-These key files can be generated using the OAuth Facilitator v2 (OAF2) found in the same directory as this README.
+These key files can be generated using OAF https://github.com/brucephenry/oaf.
 
 * Database creation
 None
