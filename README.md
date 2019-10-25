@@ -17,6 +17,7 @@ The 3 files that count for reals are:
 * OAF2.rb (found in the root of this application is a utility program)
 
 # To Do
+* Break OAF out into its own repo.
 * Write some damned tests!
 * Move the key files filenames & path to a configuration file (e.g. application.rb).
 * Add rescue clauses to the key file reads to force server aborts if the keys cannot be read.
