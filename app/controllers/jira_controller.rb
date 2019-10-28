@@ -7,7 +7,7 @@ class JiraController < ApplicationController
 	begin
 		f =	File.open("C:\\OpenSSL-Win64\\keys\\henrb028.consumer")
 		f.each do |line|
-			consumer_key = consumer_key + line
+			consumer_key = consumer_key + line.chomp
 		end
 	ensure
 		f.close unless f.nil?
@@ -45,7 +45,7 @@ class JiraController < ApplicationController
 	begin
 		f = File.open("C:\\OpenSSL-Win64\\keys\\henrb028.token")
 		f.each do |line|
-				token = token + line
+				token = token + line.chomp
 			end
 	ensure
 		f.close unless f.nil?
@@ -56,7 +56,7 @@ class JiraController < ApplicationController
 	begin
 		f = File.open("C:\\OpenSSL-Win64\\keys\\henrb028.tokensecret")
 		f.each do |line|
-				tokensecret = tokensecret + line
+				tokensecret = tokensecret + line.chomp
 			end
 	ensure
 		f.close unless f.nil?

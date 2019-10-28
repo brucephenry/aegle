@@ -34,30 +34,38 @@ the request to the server and return your payload.
 
 # Details
 * Ruby version
+
 ruby 2.6.4p104 or later
 
 * System dependencies
+
 Rails 6.0.0 or later
 
 * Configuration
+
 Needs acces to the folder in which your relevant key files for OAuth are located.
 These key files can be generated using OAF https://github.com/brucephenry/oaf.
 
 * Database creation
+
 None
 
 * Database initialization
+
 None
 
 * How to run the test suite
+
 LOL
 
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+
 bundle install
 rails server
 
 # Aegle? WTF?
+
 Aegle, daughter of the titan Atlas. Jira... Atlassian... get it?
 Sigh... never mind.
