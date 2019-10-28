@@ -1,21 +1,28 @@
 class JiraController < ApplicationController
   def index
+  	# set up the keyfile stuff
+  	keyfile_path = "C:\\OpenSSL-Win64\\keys\\"
+  	keyfile_root = "henrb028"
+  	site_url = 'https://jira.disney.com'
+
   	# Read in the keys and configuration
  
 	consumer_key = ""
 	line = ""
 	begin
-		f =	File.open("C:\\OpenSSL-Win64\\keys\\henrb028.consumer")
+		f =	File.open("#{keyfile_path}#{keyfile_root}.consumer")
 		f.each do |line|
 			consumer_key = consumer_key + line.chomp
 		end
+	rescue
+		abort "Failure reading consumer file!\n#{$!}\n#{keyfile_path}#{keyfile_root}.consumer"
 	ensure
 		f.close unless f.nil?
 	end
 
 	opts={
 	    consumer_key:       consumer_key,
-	    site:               'https://jira.disney.com/',
+	    site:               site_url,
 	    scheme:             :header,
 	    http_method:        :post,
 	    signature_method:   'RSA-SHA1',
@@ -27,10 +34,12 @@ class JiraController < ApplicationController
 	private_key = ""
 	line = ""
 	begin
-		f =	File.open("C:\\OpenSSL-Win64\\keys\\henrb028.key")
+		f =	File.open("#{keyfile_path}#{keyfile_root}.key")
 		f.each do |line|
 			private_key = private_key + line
 		end
+	rescue
+		abort "Failure reading private key file!\n#{$!}\n#{keyfile_path}#{keyfile_root}.key"
 	ensure
 		f.close unless f.nil?
 	end
@@ -43,10 +52,12 @@ class JiraController < ApplicationController
 	token = ""
 	line = ""
 	begin
-		f = File.open("C:\\OpenSSL-Win64\\keys\\henrb028.token")
+		f = File.open("#{keyfile_path}#{keyfile_root}.token")
 		f.each do |line|
 				token = token + line.chomp
 			end
+	rescue
+		abort "Failure reading token file!\n#{$!}\n#{keyfile_path}#{keyfile_root}.token"
 	ensure
 		f.close unless f.nil?
 	end
@@ -54,10 +65,12 @@ class JiraController < ApplicationController
 	tokensecret = ""
 	line = ""
 	begin
-		f = File.open("C:\\OpenSSL-Win64\\keys\\henrb028.tokensecret")
+		f = File.open("#{keyfile_path}#{keyfile_root}.tokensecret")
 		f.each do |line|
 				tokensecret = tokensecret + line.chomp
 			end
+	rescue
+		abort "Failure reading token secret file!\n#{$!}\n#{keyfile_path}#{keyfile_root}.tokensecret"
 	ensure
 		f.close unless f.nil?
 	end
@@ -72,7 +85,7 @@ class JiraController < ApplicationController
 	 
   	# Call Jira and pass the response body straight through
   	begin
-		render plain: RestClient.get("https://jira.disney.com#{request.fullpath}")
+		render plain: RestClient.get("#{site_url}#{request.fullpath}")
 
 	rescue
 		render plain: "#{$!}\n    #{consumer_key}\n    #{token}\n    #{tokensecret}" 
