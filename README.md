@@ -11,17 +11,15 @@ The basic design is that a single global route takes everything and passes it to
 That method handles all of the proxying and bypasses views by calling render plain: directly, passing through whatever was 
 returned by the call to the external OAuth1.0 API. XML, JSON, HTML, cat gifs, it don't care. It just straight passes it through.
 
-The 3 files that count for reals are:
+The 2 files that count for reals are:
 * routes.rb
 * jira_controller.rb (you will need to edit this to replace my key file names and paths with yours)
-* OAF2.rb (depricated - See https://github.com/brucephenry/oaf instead)
 
 # To Do
 * Write some damned tests!
 * Move the key files filenames & path to a configuration file (e.g. application.rb).
-* Add rescue clauses to the key file reads to force server aborts if the keys cannot be read.
 * Add a startup call to the controller to get back the jira version and if this fails abort the server.
-* Make the proxy service a commandline argument when starting the server (ie rails server service="https://jira.disney.com").
+* Make the proxy service a commandline argument when starting the server (ie rails server service="https://jira.disney.com") or add it to the configuartion file.
 
 # Known Issues
 * RACE CONDITION - Placing more than one request at a time will cause badness.
